@@ -1,0 +1,100 @@
+{
+  "name": "alphaai",
+  "displayName": "Alpha AI",
+  "description": "Generate JSDocs using Alpha AI",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.84.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "alphaai.generateJSDocs",
+        "title": "Aplha AI: Generate JSDocs",
+        "category": "alphaAI"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "alphaai.generateJSDocs",
+        "key": "ctrl+alt+shift+m",
+        "when": "editorHasSelection && editorLangId == javascript || editorLangId == javascriptreact || editorLangId == typescript || editorLangId == typescriptreact"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "alphaai.generateJSDocs",
+          "when": "editorHasSelection && editorLangId == javascript || editorLangId == javascriptreact || editorLangId == typescript || editorLangId == typescriptreact",
+          "group": "1_modification2"
+        }
+      ]
+    },
+    "configuration": {
+      "type": "object",
+      "title": "Alpha AI GenerateJSDocs",
+      "properties": {
+        "alphaai.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Your Groq API key"
+        },
+        "alphaai.model": {
+          "type": "string",
+          "default": "llama3-8b-8192",
+          "description": "The model to use for your generation. See [OpenAI's Site](https://platform.openai.com/docs/models) for more options."
+        },
+        "alphaai.prompt": {
+          "type": "string",
+          "default": "### [TASK]\nDocument the following code. Specifically, write a jsdoc if it is a function (or similarly suitable), but if it's just normal code, write a single comment.\nExtra details:\nThe comment may be multi-line if necessary.\nIf multiple functions are selected, you should write a jsdoc for the first one.\nIf we are in TypeScript, types in the JSDOC are unnecessary.\n\n### [CODE]\n{}\n\n### [JSDOC or COMMENT]",
+          "description": "The prompt given to the model. You must use empty curly braces {} to signify the where your code should be inserted inside the prompt.",
+          "editPresentation": "multilineText"
+        },
+        "alphaai.maxTokens": {
+          "type": "number",
+          "default": 300,
+          "description": "The maximum number of tokens to generate. Increase this if you want to generate more text. Decrease this if you want to save more money."
+        },
+        "alphaai.allowSingleLineSelection": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to allow single-line selections for generating docs. Usually it's best to give the AI more than one line but enabling this can be useful for small functions."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test",
+    "vscode:prepublish": "npm run esbuild-base -- --minify",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
+    "esbuild": "npm run esbuild-base -- --sourcemap",
+    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+    "test-compile": "tsc -p ./"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@types/vscode": "^1.92.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.2",
+    "@typescript-eslint/parser": "^7.0.2",
+    "@vscode/test-cli": "^0.0.6",
+    "@vscode/test-electron": "^2.3.9",
+    "esbuild": "^0.23.0",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "groq-sdk": "^0.5.0"
+  }
+}
