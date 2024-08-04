@@ -71,7 +71,7 @@ export async function getAIResponse(
         {
           role: 'system',
           content:
-            'You are a typescript assistant. You are to write a single JSdoc or a single comment. You only respond with the text itself, no other text or information.',
+            'You are a TypeScript assistant. Your task is to generate a single JSDoc comment. Make sure the JSDoc comment is complete, properly formatted, and includes all necessary details such as parameters, return types, and descriptions. Ensure the comment is correctly closed with */. Only respond with the JSDoc comment itself, without any additional text or explanations.',
         },
         {
           role: 'user',
@@ -82,8 +82,6 @@ export async function getAIResponse(
       max_tokens: maxTokens,
       stream: false,
     });
-
-    console.log(result);
 
     return {
       error: null,

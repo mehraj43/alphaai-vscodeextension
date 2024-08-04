@@ -78,7 +78,7 @@ export function activate(context: vscode.ExtensionContext) {
 
           if (!allowSingleLineSelection && startLineIndex === endLineIndex) {
             vscode.window.showInformationMessage(
-              'Only single line selections are allowed (as per settings) - please select more than one line or enable the selections of single lines in the settings.'
+              'Single line selections are not allowed (as per settings) - please select more than one line or enable the selection of single lines in the settings.'
             );
             return;
           }

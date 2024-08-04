@@ -7,8 +7,21 @@
     "vscode": "^1.84.0"
   },
   "categories": [
+    "AI",
+    "Formatters",
     "Other"
   ],
+  "keywords": [
+    "AI",
+    "Alpha AI",
+    "JSDOCs",
+    "javascript",
+    "alpha"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mehraj43/alphaai-vscodeextension.git"
+  },
   "activationEvents": [
     "onStartupFinished"
   ],
@@ -44,28 +57,28 @@
         "alphaai.apiKey": {
           "type": "string",
           "default": "",
-          "description": "Your Groq API key"
+          "description": "Your GROQ API key required for authentication."
         },
         "alphaai.model": {
           "type": "string",
           "default": "llama3-8b-8192",
-          "description": "The model to use for your generation. See [OpenAI's Site](https://platform.openai.com/docs/models) for more options."
+          "description": "Selects the model utilized for generating content. Additional models can be found on the [Groq Site](https://console.groq.com/settings/limits) for more options."
         },
         "alphaai.prompt": {
           "type": "string",
           "default": "### [TASK]\nDocument the following code. Specifically, write a jsdoc if it is a function (or similarly suitable), but if it's just normal code, write a single comment.\nExtra details:\nThe comment may be multi-line if necessary.\nIf multiple functions are selected, you should write a jsdoc for the first one.\nIf we are in TypeScript, types in the JSDOC are unnecessary.\n\n### [CODE]\n{}\n\n### [JSDOC or COMMENT]",
-          "description": "The prompt given to the model. You must use empty curly braces {} to signify the where your code should be inserted inside the prompt.",
+          "description": "The prompt sent to the model. Use empty curly braces {} to signify the where your code should be inserted inside the prompt.",
           "editPresentation": "multilineText"
         },
         "alphaai.maxTokens": {
           "type": "number",
           "default": 300,
-          "description": "The maximum number of tokens to generate. Increase this if you want to generate more text. Decrease this if you want to save more money."
+          "description": "Defines the maximum number of tokens to be generated per session. Increasing this limit allows for more verbose output, whereas reducing it helps manage token consumption efficiently."
         },
         "alphaai.allowSingleLineSelection": {
           "type": "boolean",
           "default": false,
-          "description": "Whether to allow single-line selections for generating docs. Usually it's best to give the AI more than one line but enabling this can be useful for small functions."
+          "description": "Determines whether single-line selections are permissible for generating documentation. Although multi-line inputs typically yield superior results, enabling this option can prove beneficial for documenting concise functions or methods.."
         }
       }
     }

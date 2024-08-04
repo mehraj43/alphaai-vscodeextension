@@ -1,71 +1,33 @@
-# alphaai README
+# Alpha AI · An AI-Powered Extension
 
-This is the README for your extension "alphaai". After writing up a brief description, we recommend including the following sections.
+Easily generate JSDocs
 
-## Features
+Currently supports TypeScript and Javascript.
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+### Quick Setup
+1. Provide your Groq key in the settings.
+2. The default model is "llama3-8b-8192" you can change it anytime in configuration setting. See [Groq Site](https://console.groq.com/settings/limits) for other values and token limits and decide which model you want to use.
 
-For example if there is an image subfolder under your extension project workspace:
+If you don't already have an Groq key, you'll have to get one from [Groq](https://console.groq.com/keys). You have to use your own key, sorry.
 
-\!\[feature X\]\(images/feature-x.png\)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+### Usage
+Select some code and right-click or use shortcut key(ctrl+alt+shift+m), choose the option "Aplha AI: Generate JSDocs" to generate a comment above your selection.
 
-## Requirements
+##### How it works:
+- Upon selecting a portion of code, the model receives this selection as input and generates a corresponding comment. Users can customize the prompt and other settings through the application's configuration options.
+- The system determines the type of comment to generate based on the nature of the selected code. For instance, if a function is chosen, a JSDoc-style comment is produced; for general code snippets, a standard comment is generated.
+- Generated comments and JSDocs are automatically formatted with proper indentation to ensure compatibility with code formatting tools such as Prettier.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+### Settings
+To configure these settings, navigate to your VSCode settings, proceed to the Extensions tab, and locate "Alpha AI". For those who prefer working directly with JSON, below are the keys for each setting:
+- **alphaai.apiKey** - Your GROQ API key required for authentication.
+- **alphaai.prompt** - Specifies the prompt sent to the model. Remember to use empty curly braces {} to denote where your code snippet should be included within the prompt.
+- **alphaai.model** - Selects the model utilized for generating content. Additional models can be found on the [Groq Site](https://console.groq.com/settings/limits) for more options.
+- **alphaai.maxTokens** - Defines the maximum number of tokens to be generated per session. Increasing this limit allows for more verbose output, whereas reducing it helps manage token consumption efficiently.
+- **alphaai.allowSingleLineSelection** - Determines whether single-line selections are permissible for generating documentation. Although multi-line inputs typically yield superior results, enabling this option can prove beneficial for documenting concise functions or methods.
 
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+### GitHub Profile
+- [GitHub Profile](https://github.com/mehraj43)
 
 **Enjoy!**
