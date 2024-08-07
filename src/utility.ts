@@ -127,7 +127,7 @@ export const indentCommentToCode = (
   if (indentedComment[indentedComment.length - 1] !== '\n') {
     indentedComment += '\n';
   }
-  console.log({ indentedComment });
+
   return indentedComment;
 };
 

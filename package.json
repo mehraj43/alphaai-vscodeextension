@@ -1,7 +1,9 @@
 {
   "name": "alphaai",
+  "publisher": "AlphaAI",
   "displayName": "Alpha AI",
   "description": "Generate JSDocs using Alpha AI",
+  "icon": "media/alphaai_logo.jpg",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.84.0"
@@ -25,12 +27,22 @@
   "activationEvents": [
     "onStartupFinished"
   ],
-  "main": "./out/extension.js",
+  "main": "./out/main.js",
   "contributes": {
     "commands": [
       {
         "command": "alphaai.generateJSDocs",
         "title": "Aplha AI: Generate JSDocs",
+        "category": "alphaAI"
+      },
+      {
+        "command": "alphaai.explain",
+        "title": "Aplha AI: Explain",
+        "category": "alphaAI"
+      },
+      {
+        "command": "alphaai.refactor",
+        "title": "Aplha AI: Refactor",
         "category": "alphaAI"
       }
     ],
@@ -52,7 +64,7 @@
     },
     "configuration": {
       "type": "object",
-      "title": "Alpha AI GenerateJSDocs",
+      "title": "Alpha AI",
       "properties": {
         "alphaai.apiKey": {
           "type": "string",
@@ -84,8 +96,8 @@
     }
   },
   "scripts": {
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
+    "compil": "tsc -p ./",
+    "watc": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "test": "vscode-test",
@@ -93,12 +105,15 @@
     "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
     "esbuild": "npm run esbuild-base -- --sourcemap",
     "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
-    "test-compile": "tsc -p ./"
+    "test-compile": "tsc -p ./",
+    "compile": "node esbuild-extension.js",
+    "watch": "node esbuild-extension.js --watch"
   },
   "devDependencies": {
+    "@types/babel__traverse": "^7.20.6",
     "@types/mocha": "^10.0.6",
     "@types/node": "18.x",
-    "@types/vscode": "^1.92.0",
+    "@types/vscode": "^1.84.0",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
     "@typescript-eslint/parser": "^7.0.2",
     "@vscode/test-cli": "^0.0.6",
@@ -108,6 +123,9 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "@babel/parser": "^7.25.3",
+    "@babel/traverse": "^7.25.3",
+    "@babel/types": "^7.25.2",
     "groq-sdk": "^0.5.0"
   }
 }

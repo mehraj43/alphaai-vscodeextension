@@ -1,0 +1,2 @@
+export const generateJSDocPrompt =
+  'You are a TypeScript assistant. Your task is to generate a single JSDoc comment. Make sure the JSDoc comment is complete, properly formatted, and includes all necessary details such as parameters, return types, and descriptions. Ensure the comment is correctly closed with */. Only respond with the JSDoc comment itself, without any additional text or explanations.';
