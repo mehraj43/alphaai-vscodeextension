@@ -39,7 +39,6 @@ export function activate(context: vscode.ExtensionContext) {
           );
         } else {
           const { contents, startLineIndex, endLineIndex } = selectedBlock;
-          console.log('sjkkjs', { contents, startLineIndex, endLineIndex });
           generateJSDoc({ contents, startLineIndex, endLineIndex });
         }
       } else {
@@ -58,7 +57,7 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.languages.registerCodeLensProvider(FILE_SELECTOR, codeLensProvider)
   );
-  const aa = vscode.window.activeTextEditor;
+
   context.subscriptions.push(
     vscode.commands.registerCommand(
       'alphaai.explain',

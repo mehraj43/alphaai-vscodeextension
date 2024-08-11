@@ -13,7 +13,6 @@ export default class CustomCodeLensProvider implements CodeLensProvider {
   public provideCodeLenses(
     document: TextDocument
   ): CodeLens[] | Thenable<CodeLens[]> {
-    console.log({ document });
     const createRangeObject = ({ loc }: { loc: t.SourceLocation }): Range => {
       return new Range(
         loc.start.line - 1,
@@ -40,7 +39,6 @@ export default class CustomCodeLensProvider implements CodeLensProvider {
         )
       );
       const language = document.languageId;
-      console.log({ name, range, code });
       // Add CodeLens based on the type
       if (type === 'function' || type === 'class' || type === 'arrowFunction') {
         acc.push(new ExplainCodeLens(range, code, type, language));
