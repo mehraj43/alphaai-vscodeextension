@@ -1,0 +1,8 @@
+node_modules/
+.husky/
+.vscode/
+media/
+public/
+commitlint.config.js
+prettier.config.js
+esbuild-extension.js

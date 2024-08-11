@@ -3,7 +3,6 @@ import { findSelectedBlockFromSelection } from './utility';
 import { FILE_SELECTOR } from './constants/fileSelector';
 import CustomCodeLensProvider from './providers/CodeLensProvider';
 import { generateJSDoc } from './helpers/generateJSDoc';
-import {} from './ai/aiFunction';
 import { vscodeHelper } from './vscode/helpers';
 
 export function activate(context: vscode.ExtensionContext) {

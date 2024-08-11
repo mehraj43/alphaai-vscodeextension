@@ -96,30 +96,34 @@
     }
   },
   "scripts": {
-    "compil": "tsc -p ./",
-    "watc": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "test": "vscode-test",
     "vscode:prepublish": "npm run esbuild-base -- --minify",
-    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
-    "esbuild": "npm run esbuild-base -- --sourcemap",
-    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
     "test-compile": "tsc -p ./",
     "compile": "node esbuild-extension.js",
-    "watch": "node esbuild-extension.js --watch"
+    "watch": "node esbuild-extension.js --watch",
+    "prepare": "husky install",
+    "format": "prettier --ignore-path .gitignore --write ."
   },
   "devDependencies": {
+    "@commitlint/config-conventional": "^19.2.2",
     "@types/babel__traverse": "^7.20.6",
     "@types/mocha": "^10.0.6",
     "@types/node": "18.x",
     "@types/vscode": "^1.84.0",
-    "@typescript-eslint/eslint-plugin": "^7.0.2",
-    "@typescript-eslint/parser": "^7.0.2",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
     "@vscode/test-cli": "^0.0.6",
     "@vscode/test-electron": "^2.3.9",
+    "commitlint": "^19.4.0",
     "esbuild": "^0.23.0",
-    "eslint": "^8.56.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.35.0",
+    "husky": "^9.1.4",
     "typescript": "^5.3.3"
   },
   "dependencies": {
