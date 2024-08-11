@@ -6,13 +6,6 @@ type ParseResult = {
   error: string | null;
 };
 
-// interface CompletionCreateParams {
-//   messages: {
-//     role: string;
-//     content: string;
-//   }[];
-// }
-
 export const parsePromptAndInsertInput = (
   prompt: string,
   input: string
@@ -50,20 +43,6 @@ export async function getAIResponse(
   const groq = new Groq({
     apiKey,
   });
-
-  // const params: CompletionCreateParams = {
-  //   messages: [
-  //     {
-  //       role: 'system',
-  //       content:
-  //         'You are a typescript assistant. You are to write a single JSdoc or a single comment. You only respond with the text itself, no other text or information.',
-  //     },
-  //     {
-  //       role: 'user',
-  //       content: prompt,
-  //     },
-  //   ],
-  // };
 
   try {
     const result = await groq.chat.completions.create({

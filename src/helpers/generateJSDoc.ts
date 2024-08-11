@@ -7,6 +7,7 @@ import {
   safelyExtractStringSetting,
 } from '../utility';
 import { getAIResponse, parsePromptAndInsertInput } from '../groq-connection';
+import { apiKey } from '../constants/getConfigurations';
 
 type Props = {
   contents: string;
@@ -20,11 +21,6 @@ export const generateJSDoc = ({
 }: Props) => {
   const editor = vscode.window.activeTextEditor;
 
-  const apiKey = safelyExtractStringSetting(
-    'alphaai.apiKey',
-    vscode.window,
-    vscode.workspace
-  );
   if (!apiKey) {
     return;
   }
@@ -96,7 +92,7 @@ export const generateJSDoc = ({
         }
 
         const { result, error } = await getAIResponse(
-          apiKey,
+          apiKey!,
           contents,
           prompt,
           modelFromConfig,

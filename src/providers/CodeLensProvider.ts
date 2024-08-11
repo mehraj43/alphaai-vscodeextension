@@ -13,24 +13,38 @@ export default class CustomCodeLensProvider implements CodeLensProvider {
   public provideCodeLenses(
     document: TextDocument
   ): CodeLens[] | Thenable<CodeLens[]> {
-    const createRangeObject = ({ loc }: { loc: t.SourceLocation }): Range =>
-      new Range(
+    console.log({ document });
+    const createRangeObject = ({ loc }: { loc: t.SourceLocation }): Range => {
+      return new Range(
         loc.start.line - 1,
         loc.start.column,
         loc.end.line - 1,
         loc.end.column
       );
+    };
 
     const codeElements = codeParser(document.getText());
+    // const func = codeElements.find(
+    //   (element) => element.type === 'arrowFunction'
+    // );
     // console.log({ codeElements });
     return codeElements.reduce<CodeLens[]>((acc, { loc, name, type }) => {
       const range = createRangeObject({ loc });
-      const code = document.getText(range); // Extract the code snippet
 
+      const code = document.getText(
+        new Range(
+          loc.start.line - 1,
+          0, // Start from the beginning of the line
+          loc.end.line - 1,
+          loc.end.column
+        )
+      );
+      const language = document.languageId;
+      console.log({ name, range, code });
       // Add CodeLens based on the type
       if (type === 'function' || type === 'class' || type === 'arrowFunction') {
-        acc.push(new ExplainCodeLens(range, code));
-        acc.push(new RefactorCodeLens(range, code));
+        acc.push(new ExplainCodeLens(range, code, type, language));
+        acc.push(new RefactorCodeLens(range, code, type, language));
         acc.push(new GenerateJSDocCodeLens(range, code));
       }
 

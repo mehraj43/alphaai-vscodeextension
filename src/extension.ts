@@ -3,7 +3,8 @@ import { findSelectedBlockFromSelection } from './utility';
 import { FILE_SELECTOR } from './constants/fileSelector';
 import CustomCodeLensProvider from './providers/CodeLensProvider';
 import { generateJSDoc } from './helpers/generateJSDoc';
-import { explainCode, refactorCode } from './ai/aiFunction';
+import {} from './ai/aiFunction';
+import { vscodeHelper } from './vscode/helpers';
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('Congratulations, your extension "alphaai" is now active!');
@@ -57,18 +58,38 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.languages.registerCodeLensProvider(FILE_SELECTOR, codeLensProvider)
   );
-
+  const aa = vscode.window.activeTextEditor;
   context.subscriptions.push(
     vscode.commands.registerCommand(
       'alphaai.explain',
-      (range: vscode.Range, code: string) => explainCode({ range, code })
+      ({
+        range,
+        code,
+        type: codeType,
+        language,
+      }: {
+        range: vscode.Range;
+        code: string;
+        type: string;
+        language: string;
+      }) => vscodeHelper(range, code, language, codeType, 'explain')
     )
   );
 
   context.subscriptions.push(
     vscode.commands.registerCommand(
       'alphaai.refactor',
-      (range: vscode.Range, code: string) => refactorCode({ range, code })
+      ({
+        range,
+        code,
+        type: codeType,
+        language,
+      }: {
+        range: vscode.Range;
+        code: string;
+        type: string;
+        language: string;
+      }) => vscodeHelper(range, code, language, codeType, 'refactor')
     )
   );
 }
